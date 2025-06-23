@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | CHIREC MUN 2025</title>
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts & Custom CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body class="antialiased bg-black text-white">
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md shadow-lg border-b border-gray-800">
+      <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="index.html" class="flex items-center space-x-3">
+          <img src="logo.png" alt="CHIREC MUN Logo" class="h-12 w-12 logo-shadow"/>
+          <span class="text-2xl font-extrabold text-red-500 tracking-wide">CHIREC MUN <span class="text-red-500">'25</span></span>
+        </a>
+        <div class="hidden md:flex space-x-4 items-center">
+          <a href="committees.html" class="nav-link">Committees</a>
+          <a href="register.html" class="nav-link">Register</a>
+          <a href="#footer" class="nav-link">Contact</a>
+          <a href="register.html" class="nav-cta">Register Now</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-red-500 focus:outline-none">
+          <i data-feather="menu"></i>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 transition-all duration-300">
+        <a href="committees.html" class="block py-2 nav-link">Committees</a>
+        <a href="register.html" class="block py-2 nav-link">Register</a>
+        <a href="#footer" class="block py-2 nav-link">Contact</a>
+        <a href="register.html" class="block mt-2 nav-cta text-center">Register Now</a>
+      </div>
+    </header>
+    <main>
+        <section class="min-h-[60vh] flex flex-col items-center justify-center text-center py-20 px-4 bg-black">
+            <img src="logo.png" alt="CHIREC MUN Logo" class="h-20 w-20 mx-auto mb-4 logo-shadow"/>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-2" style="color:#FFD700; letter-spacing:0.01em;">Register for CHIREC MUN 2025</h1>
+            <div class="mx-auto mb-8" style="height:3px; width:60px; background:linear-gradient(90deg,#FFD700 60%,#ef4444 100%); border-radius:2px;"></div>
+            <div class="flex flex-col items-center justify-center gap-6 mt-6">
+                <div id="reg-announcement" class="text-lg md:text-xl font-medium text-gray-200 mb-2 text-center" style="max-width: 32rem;"></div>
+                <div id="reg-action"></div>
+            </div>
+            <script>
+            async function loadRegistrationSettings() {
+              const SHEETDB_API = 'https://sheetdb.io/api/v1/t5dcgsujo7lzb';
+              try {
+                const res = await fetch(SHEETDB_API);
+                const data = await res.json();
+                const link = data.find(row => row.key === 'registration_link')?.value || '';
+                const announcement = data.find(row => row.key === 'accouncement')?.value || '';
+                document.getElementById('reg-announcement').textContent = announcement || 'Registration is now open!';
+                if (link) {
+                  document.getElementById('reg-action').innerHTML = `<a href="${link}" target="_blank" class="btn-gold px-10 py-4 text-xl mt-2">Register Now</a>`;
+                } else {
+                  document.getElementById('reg-action').innerHTML = `<span class="text-red-500">Registration link not set.</span>`;
+                }
+              } catch (e) {
+                document.getElementById('reg-announcement').textContent = 'Error loading registration settings.';
+                document.getElementById('reg-action').innerHTML = '';
+              }
+            }
+            loadRegistrationSettings();
+            </script>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer id="footer" class="bg-black border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <div class="footer-accent"></div>
+            <div class="footer-title">CHIREC MUN <span class="text-red-500">'25</span></div>
+            <div class="footer-slogan">Represent • Reason • Resolve</div>
+            <div class="my-4">
+                <p class="text-gray-300">For inquiries, contact us at <a href="mailto:contact@chirecmun.org" class="footer-link">contact@chirecmun.org</a></p>
+            </div>
+            <div class="footer-meta">© 2024-2025 CHIREC MUN Organizing Committee. All Rights Reserved.</div>
+        </div>
+    </footer>
+    <!-- JS Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

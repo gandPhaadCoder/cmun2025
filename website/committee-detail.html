@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committee Detail | CHIREC MUN 2025</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts & Custom CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md shadow-lg border-b border-gray-800">
+  <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="logo.png" alt="CHIREC MUN Logo" class="h-12 w-12 logo-shadow"/>
+      <span class="text-2xl font-extrabold text-red-500 tracking-wide">CHIREC MUN <span class="text-red-500">'25</span></span>
+    </a>
+    <div class="hidden md:flex space-x-4 items-center">
+      <a href="committees.html" class="nav-link">Committees</a>
+      <a href="register.html" class="nav-link">Register</a>
+      <a href="#footer" class="nav-link">Contact</a>
+      <a href="register.html" class="nav-cta">Register Now</a>
+    </div>
+    <button id="mobile-menu-button" class="md:hidden text-red-500 focus:outline-none">
+      <i data-feather="menu"></i>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 transition-all duration-300">
+    <a href="committees.html" class="block py-2 nav-link">Committees</a>
+    <a href="register.html" class="block py-2 nav-link">Register</a>
+    <a href="#footer" class="block py-2 nav-link">Contact</a>
+    <a href="register.html" class="block mt-2 nav-cta text-center">Register Now</a>
+  </div>
+</header>
+
+
+    <main class="py-20 bg-black text-white">
+        <div id="committee-content" class="container mx-auto px-6" data-aos="fade-up">
+            <!-- Content will be dynamically inserted here by script.js -->
+            <!-- Fallback/Loading State -->
+            <div class="text-center text-gray-400">Loading committee details...</div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="footer" class="bg-black border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <div class="footer-accent"></div>
+            <div class="footer-title">CHIREC MUN <span class="text-red-500">'25</span></div>
+            <div class="footer-slogan">Represent • Reason • Resolve</div>
+            <div class="footer-contacts flex flex-col items-center gap-3 mt-3">
+              <div class="flex items-center gap-2 font-bold text-gold text-lg">
+                <a href="mailto:contact.mun@chirec.ac.in" class="footer-link flex items-center gap-2">
+                  contact.mun@chirec.ac.in
+                  <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </a>
+              </div>
+              <div class="flex items-center gap-2 font-bold text-gold text-lg">
+                <a href="https://instagram.com/chirecmun" target="_blank" class="footer-link flex items-center gap-2">
+                  @chirecmun
+                  <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="footer-meta">© 2024-2025 CHIREC MUN Organizing Committee. All Rights Reserved.</div>
+        </div>
+    </footer>
+    
+    <!-- JS Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>

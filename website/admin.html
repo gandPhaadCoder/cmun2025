@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel | CHIREC MUN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: white;
+    }
+    input, textarea {
+      background-color: #1f1f1f;
+      border: 1px solid #374151;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #ef4444;
+      box-shadow: 0 0 0 1px #ef4444;
+    }
+  </style>
+</head>
+<body class="antialiased bg-black text-white min-h-screen flex flex-col">
+  <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md shadow-lg border-b border-gray-800">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-3">
+        <img src="logo.png" alt="CHIREC MUN Logo" class="h-12 w-12 logo-shadow"/>
+        <span class="text-2xl font-extrabold text-red-500 tracking-wide">CHIREC MUN <span class="text-red-500">'25</span></span>
+      </a>
+      <div class="hidden md:flex space-x-4 items-center">
+        <a href="committees.html" class="nav-link">Committees</a>
+        <a href="register.html" class="nav-link">Register</a>
+        <a href="#footer" class="nav-link">Contact</a>
+        <a href="admin.html" class="nav-cta">Admin Panel</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-red-500 focus:outline-none">
+        <i data-feather="menu"></i>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 transition-all duration-300">
+      <a href="committees.html" class="block py-2 nav-link">Committees</a>
+      <a href="register.html" class="block py-2 nav-link">Register</a>
+      <a href="#footer" class="block py-2 nav-link">Contact</a>
+      <a href="admin.html" class="block mt-2 nav-cta text-center">Admin Panel</a>
+    </div>
+  </header>
+  <div id="admin-login" class="fixed inset-0 flex items-center justify-center bg-black/80 z-50" style="display:none;">
+    <div class="bg-[#18181b]/95 rounded-2xl shadow-2xl p-8 w-full max-w-sm flex flex-col items-center border-2 border-gray-800">
+      <img src="logo.png" alt="CHIREC MUN Logo" class="h-16 w-16 mb-4 logo-shadow"/>
+      <h2 class="text-2xl font-extrabold text-gold mb-4">Admin Login</h2>
+      <form id="login-form" class="w-full flex flex-col gap-4">
+        <input type="password" id="admin-password" placeholder="Enter password" class="w-full bg-[#232323] border border-gray-700 rounded-lg px-4 py-3 text-lg text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none" autocomplete="current-password"/>
+        <button type="submit" class="btn-gold w-full py-3 text-lg font-bold rounded-full">Login</button>
+        <div id="login-error" class="text-red-500 text-center font-semibold mt-2" style="display:none;"></div>
+      </form>
+    </div>
+  </div>
+  <main class="flex-1 w-full px-4 flex flex-col items-center" id="admin-main" style="display:none;">
+    <section class="w-full bg-[#18181b]/80 rounded-3xl shadow-2xl border-2 border-gray-800 mt-12 mb-16 p-8 md:p-12 flex flex-col items-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-2" style="color:#FFD700; text-shadow:0 0 16px #FFD700,0 2px 8px rgba(0,0,0,0.25);">Admin Dashboard</h1>
+      <div class="mx-auto mb-8" style="height:4px; width:80px; background:linear-gradient(90deg,#FFD700 60%,#ef4444 100%); border-radius:2px;"></div>
+      <div class="flex flex-col md:flex-row justify-between items-center w-full mb-8 gap-4">
+        <div class="flex gap-3 w-full md:w-auto justify-end">
+          <a href="register.html" class="btn-gold px-6 py-2 text-base font-bold" target="_blank">Go to Registration Form</a>
+          <button id="add-committee" class="btn-gold px-6 py-2 text-base font-bold">+ Add Committee</button>
+          <button id="reset-data" class="px-6 py-2 text-base font-bold rounded-full border border-red-600 text-red-500 bg-black hover:bg-red-600 hover:text-white transition-colors">Reset All</button>
+          <button id="logout-admin" class="px-6 py-2 text-base font-bold rounded-full border border-gray-700 text-gray-400 bg-black hover:bg-gray-800 hover:text-white transition-colors">Logout</button>
+        </div>
+      </div>
+      <div class="flex justify-center w-full mb-8">
+        <button id="tab-committees" class="tab-btn px-6 py-2 text-base font-bold rounded-l-full border border-gold text-gold bg-black hover:bg-gold hover:text-black transition-colors active">Edit Committees</button>
+        <button id="tab-registration" class="tab-btn px-6 py-2 text-base font-bold rounded-r-full border border-gold text-gold bg-black hover:bg-gold hover:text-black transition-colors">Edit Registration Form</button>
+      </div>
+      <section id="admin-committees" class="committee-admin-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-full">
+        <!-- Dynamic content -->
+      </section>
+      <section id="admin-registration-settings" class="w-full mb-12" style="display:none;">
+        <div class="bg-[#232323]/90 rounded-2xl shadow-2xl p-8 border-2 border-gray-800 mb-8">
+          <h2 class="text-xl font-bold text-gold mb-4">Registration Settings</h2>
+          <form id="reg-settings-form" class="flex flex-col gap-4">
+            <label>
+              <span>Registration Link</span>
+              <input type="url" id="reg-link" placeholder="https://your-form-link.com" class="w-full bg-[#232323] border border-gray-700 rounded-lg px-4 py-3 text-base text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none"/>
+            </label>
+            <label>
+              <span>Announcement</span>
+              <textarea id="reg-announcement" rows="2" placeholder="e.g. Registration is now open!" class="w-full bg-[#232323] border border-gray-700 rounded-lg px-4 py-3 text-base text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none"></textarea>
+            </label>
+            <button type="submit" class="btn-gold w-full py-3 text-lg font-bold rounded-full">Save Registration Settings</button>
+            <div id="reg-settings-success" class="text-green-500 text-center font-semibold mt-2" style="display:none;">Saved!</div>
+            <div id="reg-settings-error" class="text-red-500 text-center font-semibold mt-2" style="display:none;"></div>
+          </form>
+        </div>
+      </section>
+      <div id="admin-error" class="text-red-500 font-bold mt-8"></div>
+    </section>
+  </main>
+  <footer id="footer" class="bg-black border-t border-gray-800 w-full mt-16">
+    <div class="container mx-auto px-6 py-8 text-center">
+      <div class="footer-accent"></div>
+      <div class="footer-title">CHIREC MUN <span class="text-red-500">'25</span></div>
+      <div class="footer-slogan">Represent • Reason • Resolve</div>
+      <div class="footer-contacts flex flex-col items-center gap-3 mt-3">
+        <div class="flex items-center gap-2 font-bold text-gold text-lg">
+          <a href="mailto:contact.mun@chirec.ac.in" class="footer-link flex items-center gap-2">
+            contact.mun@chirec.ac.in
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+        </div>
+        <div class="flex items-center gap-2 font-bold text-gold text-lg">
+          <a href="https://instagram.com/chirecmun" target="_blank" class="footer-link flex items-center gap-2">
+            @chirecmun
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-meta">© 2024-2025 CHIREC MUN Organizing Committee. All Rights Reserved.</div>
+    </div>
+  </footer>
+  <script>
+    const STORAGE_KEY = "cmun_committees";
+    const container = document.getElementById("admin-committees");
+    const errorDiv = document.getElementById("admin-error");
+
+    let committees = {};
+    let defaultCommittees = {};
+
+    async function loadCommittees() {
+      try {
+        const res = await fetch('committees.json');
+        if (!res.ok) throw new Error('Failed to load committees.json');
+        defaultCommittees = await res.json();
+        committees = JSON.parse(localStorage.getItem(STORAGE_KEY)) || structuredClone(defaultCommittees);
+        renderAdminUI();
+      } catch (e) {
+        errorDiv.textContent = 'Error loading committees: ' + e.message;
+      }
+    }
+
+    function renderAdminUI() {
+      container.innerHTML = '';
+      // Render committee cards in a responsive 3-column grid
+      container.className = "committee-admin-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-full";
+      Object.entries(committees).forEach(([key, data]) => {
+        const block = document.createElement('div');
+        block.className = "bg-black/70 backdrop-blur-md rounded-3xl border-2 border-gold p-8 space-y-6 shadow-2xl flex flex-col";
+        block.innerHTML = `
+          <h2 class=\"text-3xl font-extrabold mb-2 text-center\" style=\"color:#FFD700; text-shadow:0 0 12px #FFD700,0 2px 8px rgba(0,0,0,0.25);\">${key}</h2>
+          <div class=\"mx-auto mb-4\" style=\"height:3px; width:60px; background:linear-gradient(90deg,#FFD700 60%,#ef4444 100%); border-radius:2px;\"></div>
+          <label class=\"block text-gold font-semibold mb-2\">Full Name
+            <input type=\"text\" class=\"w-full bg-[#18181b]/80 border border-gold rounded-xl px-4 py-3 text-base text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none mt-1 shadow-inner\" value=\"${data.fullName}\">
+          </label>
+          <label class=\"block text-gold font-semibold mb-2\">Image URL
+            <input type=\"text\" class=\"w-full bg-[#18181b]/80 border border-gold rounded-xl px-4 py-3 text-base text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none mt-1 shadow-inner\" value=\"${data.img}\">
+          </label>
+          <label class=\"block text-gold font-semibold mb-2\">Agenda
+            <textarea class=\"w-full bg-[#18181b]/80 border border-gold rounded-xl px-4 py-3 text-base text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none mt-1 shadow-inner mt-1\" rows=\"2\">${data.agenda}</textarea>
+          </label>
+          <label class=\"block text-gold font-semibold mb-2\">Description
+            <textarea class=\"w-full bg-[#18181b]/80 border border-gold rounded-xl px-4 py-3 text-base text-white focus:border-red-500 focus:ring-2 focus:ring-red-500 outline-none mt-1 shadow-inner mt-1\" rows=\"3\">${data.description}</textarea>
+          </label>
+          <div class=\"flex justify-end mt-4\">
+            <button class=\"save-btn bg-gold hover:bg-[#FFD700]/90 text-black font-bold px-8 py-3 rounded-full shadow-lg transition-all text-lg\" data-key=\"${key}\">
+              Save Changes
+            </button>
+          </div>
+        `;
+        container.appendChild(block);
+      });
+      document.querySelectorAll(".save-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const parent = btn.closest("div");
+          const inputs = parent.querySelectorAll("input, textarea");
+          const updated = {
+            fullName: inputs[0].value.trim(),
+            img: inputs[1].value.trim(),
+            agenda: inputs[2].value.trim(),
+            description: inputs[3].value.trim()
+          };
+          const id = btn.dataset.key;
+          committees[id] = { ...committees[id], ...updated };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(committees));
+          btn.textContent = "Saved!";
+          setTimeout(() => btn.textContent = "Save Changes", 1500);
+        });
+      });
+    }
+
+    document.getElementById("reset-data").addEventListener("click", () => {
+      if (confirm("Are you sure you want to reset all data?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        committees = structuredClone(defaultCommittees);
+        renderAdminUI();
+      }
+    });
+
+    // Admin login logic
+    const ADMIN_PASSWORD = 'chirecmun2025';
+    const LOGIN_KEY = 'cmun_admin_logged_in';
+    const loginDiv = document.getElementById('admin-login');
+    const adminMain = document.getElementById('admin-main');
+    function showLogin() {
+      loginDiv.style.display = 'flex';
+      adminMain.style.display = 'none';
+    }
+    function showAdmin() {
+      loginDiv.style.display = 'none';
+      adminMain.style.display = '';
+    }
+    function checkLogin() {
+      if (localStorage.getItem(LOGIN_KEY) === 'true') {
+        showAdmin();
+      } else {
+        showLogin();
+      }
+    }
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const pw = document.getElementById('admin-password').value;
+      const errorDiv = document.getElementById('login-error');
+      if (pw === ADMIN_PASSWORD) {
+        localStorage.setItem(LOGIN_KEY, 'true');
+        showAdmin();
+        errorDiv.style.display = 'none';
+        document.getElementById('admin-password').value = '';
+      } else {
+        errorDiv.textContent = 'Incorrect password.';
+        errorDiv.style.display = 'block';
+      }
+    });
+    document.getElementById('logout-admin').addEventListener('click', function() {
+      localStorage.removeItem(LOGIN_KEY);
+      showLogin();
+    });
+    checkLogin();
+
+    loadCommittees();
+    feather.replace();
+
+    // Registration settings logic
+    const SHEETDB_API = 'https://sheetdb.io/api/v1/t5dcgsujo7lzb';
+    async function loadRegSettings() {
+      try {
+        const res = await fetch(SHEETDB_API);
+        const data = await res.json();
+        const link = data.find(row => row.key === 'registration_link')?.value || '';
+        const announcement = data.find(row => row.key === 'accouncement')?.value || '';
+        document.getElementById('reg-link').value = link;
+        document.getElementById('reg-announcement').value = announcement;
+      } catch (e) {
+        document.getElementById('reg-settings-error').textContent = 'Error loading registration settings.';
+        document.getElementById('reg-settings-error').style.display = 'block';
+      }
+    }
+    document.getElementById('reg-settings-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const link = document.getElementById('reg-link').value.trim();
+      const announcement = document.getElementById('reg-announcement').value.trim();
+      const successDiv = document.getElementById('reg-settings-success');
+      const errorDiv = document.getElementById('reg-settings-error');
+      successDiv.style.display = 'none';
+      errorDiv.style.display = 'none';
+      try {
+        // Update registration_link
+        await fetch(`${SHEETDB_API}/key/registration_link`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: { value: link } })
+        });
+        // Update accouncement
+        await fetch(`${SHEETDB_API}/key/accouncement`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: { value: announcement } })
+        });
+        successDiv.style.display = 'block';
+        setTimeout(() => { successDiv.style.display = 'none'; }, 2000);
+      } catch (e) {
+        errorDiv.textContent = 'Error saving registration settings.';
+        errorDiv.style.display = 'block';
+      }
+    });
+    loadRegSettings();
+
+    // Tab switcher logic
+    const tabCommittees = document.getElementById('tab-committees');
+    const tabRegistration = document.getElementById('tab-registration');
+    const sectionCommittees = document.getElementById('admin-committees');
+    const sectionRegistration = document.getElementById('admin-registration-settings');
+    function setTab(tab) {
+      if (tab === 'committees') {
+        tabCommittees.classList.add('active');
+        tabRegistration.classList.remove('active');
+        sectionCommittees.style.display = '';
+        sectionRegistration.style.display = 'none';
+      } else {
+        tabCommittees.classList.remove('active');
+        tabRegistration.classList.add('active');
+        sectionCommittees.style.display = 'none';
+        sectionRegistration.style.display = '';
+      }
+    }
+    tabCommittees.addEventListener('click', () => setTab('committees'));
+    tabRegistration.addEventListener('click', () => setTab('registration'));
+    setTab('committees');
+  </script>
+</body>
+</html>

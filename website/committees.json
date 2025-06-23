@@ -1,0 +1,100 @@
+{
+  "DISEC": {
+    "name": "DISEC",
+    "fullName": "Disarmament and International Security",
+    "img": "https://bit.ly/4ndKUG3",
+    "agenda": "Addressing the threat of autonomous weapons systems in modern warfare.",
+    "description": "DISEC deals with disarmament, global challenges, and threats to peace that affect the international community and seeks solutions to challenges in the international security regime."
+  },
+  "UNHRC": {
+    "name": "UNHRC",
+    "fullName": "United Nations Human Rights Council",
+    "img": "https://bit.ly/469lEdQ",
+    "agenda": "Protecting the rights of climate refugees and displaced persons.",
+    "description": "The UNHRC is responsible for promoting and protecting human rights around the globe, addressing violations and making recommendations."
+  },
+  "UNCSW": {
+    "name": "UNCSW",
+    "fullName": "United Nations Commission on the Status of Women",
+    "img": "https://bit.ly/4eiQNxy",
+    "agenda": "Achieving economic empowerment for women in the post-pandemic world.",
+    "description": "The UNCSW is the principal global intergovernmental body exclusively dedicated to the promotion of gender equality and the empowerment of women."
+  },
+  "Lok Sabha": {
+    "name": "Lok Sabha",
+    "fullName": "The House of the People, India",
+    "img": "https://bit.ly/4egp6FI",
+    "agenda": "Deliberating the Digital Personal Data Protection Bill.",
+    "description": "A simulation of India's lower house of Parliament, where members debate and legislate on pressing national issues."
+  },
+  "FIFA": {
+    "name": "FIFA",
+    "fullName": "Fédération Internationale de Football Association",
+    "img": "https://bit.ly/3ZLBzv4",
+    "agenda": "Tackling corruption and ensuring financial transparency in football governance.",
+    "description": "A specialized committee debating the future of global football governance, regulations, and international tournament hosting."
+  },
+  "UNODC": {
+    "name": "UNODC",
+    "fullName": "United Nations Office on Drugs and Crime",
+    "img": "http://bit.ly/4k0q3Da",
+    "agenda": "Combating the global trafficking of synthetic opioids.",
+    "description": "The UNODC works to counter illicit drugs and international crime, promoting justice and public health."
+  },
+  "ECOFIN": {
+    "name": "ECOFIN",
+    "fullName": "Economic and Financial Affairs Council",
+    "img": "http://bit.ly/4lpeRRT",
+    "agenda": "Developing a regulatory framework for global cryptocurrencies.",
+    "description": "This committee addresses economic policy, public finances, and financial markets to ensure stability and growth."
+  },
+  "US Senate": {
+    "name": "US Senate",
+    "fullName": "The United States Senate",
+    "img": "http://bit.ly/3Gao15w",
+    "agenda": "Debating federal legislation on artificial intelligence and big tech.",
+    "description": "A simulation of the upper chamber of the U.S. Congress, focusing on landmark legislation with national and global impact."
+  },
+  "CCC": {
+    "name": "CCC",
+    "fullName": "Continuous Crisis Committee",
+    "img": "http://bit.ly/3G4dqJy",
+    "agenda": "Classified: Responding to a dynamic international crisis.",
+    "description": "A fast-paced, dynamic committee where delegates must react in real-time to a constantly evolving crisis scenario."
+  },
+  "UNSC": {
+    "name": "UNSC",
+    "fullName": "United Nations Security Council",
+    "img": "http://bit.ly/40j42IF",
+    "agenda": "Addressing the security and political crisis in the Sahel region.",
+    "description": "The UNSC holds primary responsibility for the maintenance of international peace and security, with the ability to issue binding resolutions."
+  },
+  "CSTD": {
+    "name": "CSTD",
+    "fullName": "Commission on Science and Technology for Development",
+    "img": "http://bit.ly/4kSrZyL",
+    "agenda": "Bridging the digital divide and ensuring equitable access to technology.",
+    "description": "The CSTD provides the General Assembly and Economic and Social Council with high-level advice on science and technology issues."
+  },
+  "INTERPOL": {
+    "name": "INTERPOL",
+    "fullName": "International Criminal Police Organization",
+    "img": "http://bit.ly/3GejpLH",
+    "agenda": "Coordinating a global response to cybercrime and ransomware attacks.",
+    "description": "A crisis-oriented committee simulating INTERPOL's role in facilitating worldwide police cooperation and crime control."
+  },
+  "WTO": {
+    "name": "WTO",
+    "fullName": "World Trade Organization",
+    "img": "http://bit.ly/3HUGbsD",
+    "agenda": "Resolving trade disputes arising from unilateral tariffs and protectionism.",
+    "description": "The WTO deals with the global rules of trade between nations, ensuring that trade flows as smoothly, predictably, and freely as possible."
+  },
+  "IP": {
+    "name": "IP",
+    "fullName": "International Press",
+    "img": "http://bit.ly/4nwodx5",
+    "agenda": "Reporting on the proceedings of CHIREC MUN 2025.",
+    "description": "The International Press corps is responsible for observing and reporting on committee debates, conducting interviews, and publishing newsletters."
+  }
+} 
